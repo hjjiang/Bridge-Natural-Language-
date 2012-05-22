@@ -1,0 +1,91 @@
+BridgE by /cs164-(bv|bm)/ : Design Document
+
+Part 1: Problem
+Many of our friends and fellow students who aren't CS oriented have expressed curiosity in how to program and usually want to learn something simple and quick. But the moment they try to program something in any language, they get lost easily and start to become frustrated on how to translate their ideas to a working program. The most common reason we found behind this is the difficulty of grasping the syntax of an entirely new programming language. Syntax of programming languages can be difficult to understand at first leading to frustration over whether or not it's your code/idea that's wrong or your understanding of the language and its syntax. This problem is particularly hard for any beginner or non-technical oriented people. 
+
+Part 2: Related Work
+We originally looked at Scheme and how many say that it’s an “easy language to learn”. After asking non-technical users to attempt to program something in scheme, we quickly learned that it is indeed “easier” than some other languages (i.e. JAVA). However, they still encountered lots of problems so we took a look at Python. Our users found that Python was great but still had difficulty in remembering or understanding certain syntax.
+ 
+Therefore, we are currently adapting the ideas from natural language processing (NLP) in order to help form an easier way of communicating between users and the computer. As stated previously in part 1, many non-technical oriented users are slow to adapt and learn the syntax of programming languages. Thus it seems that a simple solution would be to allow these users to write “programs” or “queries” in a more “natural” language for them rather than having to immediately jump into learning the syntax of programming languages such as Scheme/Python.
+
+Part 3: Solution
+First, we believe that this problem is worth solving because our users tend to spend 90% of their time trying to understand the language rather than understanding some simple ideas of programming. Due to this, the majority of users quickly become frustrated and confused about what is incorrect: their understanding of programming ideas, the syntax of the programming language, or their understanding of the programming language. 
+
+Therefore, our solution is to construct an entirely new simple language for these users that would hopefully decrease the  amount of time and frustration spend on determining their errors. This new language is by no means meant to be a substitute for powerful languages like Python, Java, etc. but is instead meant to bridge the beginning gap between computers and users through clear and understandable text. That being said, our solution is more of a beginning step between our users and the start of learning to program in languages such as Python/Java,etc.. 
+
+Thus after using our new language, our hope is that users will be able to tell whether or not they truly enjoy programming or would like to pursue programming. If not, then this is the perfect time to stop and switch gears or maybe to keep fiddling around as a hobby. If yes, then they may now leave the usage of our simple language and begin learning the more complex syntax of whatever language they choose. 
+
+Part 4: Relevance
+This project makes us (at least) practice AST desugaring, AST construction, AST parsing, interpreter construction, and grammar construction. We will have to create grammar for the entire new “simple language” we hope to construct and thus we will have to create a (potentially) new AST that will then be desugared/parsed such that our base Python interpreter can output the correct output.
+
+Part 5: Examples:
+See Appendix I
+
+
+
+Part 6: Design and Implementation Plan:
+Our components consist of the Natural Language Grammar, Parser Generator, and CS164 Interpreter. The Natural Language Grammar will be the implementation of our BridE language. We are hoping and planning to write our BridgE grammar so that even if it’s ambiguous, it would still be resolved. It will also try to use a great variety of simple and understanding words from the english language that can be easily translated/parsed. That way, we hope users who move on after using this program will have some idea of how the syntax for BridgE connects to the syntax of other programming languages such as Python or Java. For examples of some possible syntax, please see Appendix I. 
+
+The parser generator will be based from the CS164 projects and will use Earley Parser optimization algorithm to create a parser for our BridE langauge so that our input files and any other possible library files can be parsed into an Abstract Syntax Tree (AST). We most likely will reuse our parser generator and shouldn’t be modifying much in it.
+
+The interpreter (also based from the CS164 projects) will be the program that connects everything together by first changing things into bytecode and then interpreting that to give users the potential of using coroutines. It will take in the parsed AST generated by the parser generator and desugar/bytecode it and then and execute the bytecode. However we are hesitant in keeping the ability of coroutines as we think it might be too complicated for our intended users to manage. That being said, when creating our interpreter, we might remove the bytecode portion of it and instead run the program solely off the AST in order to run faster.
+
+Link to our drawing: https://docs.google.com/drawings/d/1eTDPzVL9VtGPQkiw57Q6YvHA1ACF5oqX_vQ2Hq2ZuWY/edit
+
+Part 7: Implementation Steps:
+1) Write an outline grammar that supports simple example:
+Create a basic outline for our simple language that would support the simple example in Appendix I. The result should be a resolved AST. After finishing this step, there is no functionality that you can test yet.
+
+2) Write (or modify) our interpreter:
+Create our interpreter which will take in an AST and execute it. After this step, we should be able to start writing simple examples that should be able to run without a problem.
+
+3) Write grammar that supports the next level example:
+Extend our outline grammar to support the next level example (like medium/hard example in Appendix I). It is possible that we cannot test the new level examples however until the end of the next step
+
+4) Write desugaring for our grammar:
+Create our desugaring for our outline grammar. The results should be a desugared AST that would be passed into our interpreter. This will help us get into medium and harder examples. After this step, we will be able to execute and test our programs.
+
+5) Repeat steps 3-4:
+Essentially repeat steps 3-4 until satisfied with the range of our simple language and the output of running such programs.
+
+
+
+
+
+
+
+
+
+Appendix I: Examples
+
+Simple:
+create counter.
+function X will print X as it counts to 7.
+function Y will do X, increase counter by 1, print counter.
+do 2Y.
+
+This will possibly display:
+X: 1, 2, 3, 4, 5, 6, 7
+counter: 1
+X: 1, 2, 3, 4, 5, 6, 7
+counter: 2
+Done
+
+Medium:
+create X to be a dictionary
+function FillDictionary will take argument Number, Dict, Filler and while iterating Dict from 0 to Num will set Num of Dict to be Filler.
+do then print FillDictionary with argument 2,X,”hello”.
+
+This will possibly display:
+{0: “hello”, 1: “hello”, 2: “hello”}
+Done
+
+Hard:
+create X to be 1
+create Y to be 1
+function Z will repeat print X+Y and increase Y by 1 while Y <= 3  and repeat that and increase X by 1 while X <= 3.
+do Z.
+
+This will possibly display:
+2,3,4,3,4,5,4,5,6
+Done

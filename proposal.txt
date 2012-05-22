@@ -1,0 +1,53 @@
+BridgE by /cs164-(bv|bm)/
+Part 1: Problem
+Many of our friends and fellow students who aren't CS oriented have expressed curiosity in how to program and usually want to learn something simple and quick. But the moment they try to program something in any language, they get lost easily and start to become frustrated on how to translate their ideas to a working program. The most common reason we found behind this is the difficulty of grasping the syntax of an entirely new programming language. Syntax of programming languages can be difficult to understand at first leading to frustration over whether or not it's your code/idea that's wrong or your understanding of the language and its syntax. This problem is particularly hard for any beginner or non-technical oriented people. Because of this, we have decided to construct an entirely new simple language for these users. This new language is by no means meant to be a substitute for powerful languages like Python, Java, etc. but is instead meant to bridge the beginning gap between computers and users through clear and understandable text. This problem is worth solving because our users tend to spend 90% of their time trying to understand the language rather than understanding some simple ideas of programming. By developing this new language, we hope to shorten the time and frustration spent on understanding a language and allow users to immediately dive into understanding basic ideas such as recursion. Through this, we hope that these users will learn quicker or be able to spend the majority of their time on fully understanding the basic concepts of programming. 
+Part 2: Analysis of language that solves a similar problem
+Scheme in the past cs61a best solves the problem above. (see figure 1)
+How scheme is implemented is similar to how we implemented project 1 such that every line in scheme is a desugared statement. In a sense, scheme does not need to be parsed because it is already in the parse form compared to the cs164 language although one can be confused by all the parentheses when writing code in scheme.
+The desugared cs164 language is very similar to Scheme. They both have lexical scoping which is common in most programing languages. For every ‘(‘ is a function or arithmetic call, like in the figure 1, to call sqr x, it would be (sqr x). Scheme includes +,-,*,/,>,>=,<,<=,= and also includes lambda, map, serialization, and others. The difference is that we do not need an ‘int-lit’ or ‘var’ next to a constant for string when writing in scheme. 
+Part 3: Supported Features
+The domain: Some small programs that can be written in our language are: printing numbers up to a certain argument, small Fibonacci counter, squaring all numbers in a list or array, etc.
+The outline: Most likely be using a parser to translate from our language to python which will then run and produce the output based on the given input. Objects could be names starting with capital letters or a single capital letter. Following these objects can be what these objects can do. Please see figure 2 for sample programs that may help understand what we mean.
+Part 4: Implementation
+Our language is a sort of intermediary language and will piggyback on Python. As seen in figure 2, users will be able to write “sentences” of sorts that our language will parse into Python for Python to run it and return back an output. So far, this is our preferred solution.
+Another way could be to piggyback onto Javascript/HTML which may possibly allow us to actually host this language online. This may allow users to just run the web app and give them the ability to write their programs online and instantly get an output. However this may run into storage/server issues if the program were to infinite loop on accident.
+Finally, another way could be to piggyback onto Java and include an entire GUI using other programs like Microsoft’s Visual Studio that could graph a tree relating to the user’s program. This may help users visualize their program and how Java is running it but may result in having to limit the extent of our language due to having to construct the GUI graph. 
+Appendix:
+Figure 1:
+
+(define (squares s)			// defines a function squares with s as a list of numbers
+  (if (empty? s)				// checks if the list/array is empty
+      '()					// if empty output an empty list
+      (se (sqr (first s))(squares (bf s)))	// else calls sqr( s[0] ) ‘s’ and squares( s[1:] )
+   )
+)
+
+(define (sqr x)	// defines sqr with x = number
+  (* x x))		// multiplies x with itself
+
+
+
+Figure 2:
+
+Sample program:
+X will count to 7 and print. 
+Y will count 1 and print when X is done. 
+do 2X.
+
+This will possibly display: 
+X: 1, 2, 3, 4, 5, 6, 7
+Y: 1
+X: 1, 2, 3, 4, 5, 6, 7
+Y: 2
+Done
+
+Sample program:
+X will count to 10 while Y is true.
+
+This will possibly display:
+Error: This may cause an infinite loop. Do you wish to continue? y/n
+Input: n
+
+OR
+
+Error: What is Y?

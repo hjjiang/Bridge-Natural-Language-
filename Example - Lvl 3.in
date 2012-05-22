@@ -1,0 +1,16 @@
+create counter
+function x will create i to be 7 and create y to be 1 and create z to be 2 and print "project x, i=7 + y=1 + z=2 equals to " + (i plus y plus z)
+#do x
+function foo will create j and count from j to 7 all while print j
+#do foo
+function bar with b,a,r will create i to be 9 and print "b + a + r + i = " + (b plus a plus r plus i)
+do bar with 5000,2,3 2 times
+function xfoobar will print "xfoobar initializing...." and do x and do foo and do bar with 9000,900,90 and increase counter by 2 and print "counter = " + counter
+print "doing 2 xfoobar"
+do xfoobar twice
+
+create dict to be a dictionary
+print "....doing whileloop...."
+while counter is less than 10, set counter of dict to equal counter minus 1 and increase counter by 2
+print 'dict = ' + dict
+print ".....whileloop end....."

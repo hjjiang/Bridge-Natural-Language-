@@ -1,0 +1,17 @@
+create counter  #create initiates counter to be 0 by default
+
+#defines x with:
+#an instance variable i
+#count is a whileloop and the all while print i is the statement of the while: 
+#while(i<7){ print i, i=i+1}
+#i will automatically increase by 1
+function x will create i and count from i to 7 all while print i 
+
+#defines y with:
+#do x = calling the function x = x()
+#increase counter by 1 = counter++
+function y will do x and increase counter by 1 and print "counter = " + counter
+
+#do NUM Id does the given Id, NUM number of times
+#in this case it does y twice
+do 2y

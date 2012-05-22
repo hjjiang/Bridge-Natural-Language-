@@ -1,0 +1,8 @@
+#Defines addthree with:
+#3 args: b,a,r
+#creating a new instance variable i
+#
+#uses the with clause to give arguments.
+
+function addthree with b,a,r will create i to be 9 and print "b + a + r + i = " + (b plus a plus r plus i)
+do 2addthree with 5000,2,3
